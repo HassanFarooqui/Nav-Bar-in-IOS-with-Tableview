@@ -8,12 +8,31 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
+class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    
+    @IBOutlet weak var TableViewOutlet: UITableView!
+    
+    
+       let Arry = ["Farhan", "Salman", "Imran", "Kamran", "Faizan", "Nauman", "Furqan", "Hassan", "Farzan", "Farhan", "Salman", "Imran", "Kamran", "Faizan", "Nauman", "Furqan", "Hassan", "Farzan"]
+       override func viewDidLoad()
+       {
+         super.viewDidLoad()
+         self.navigationController?.hidesBarsOnSwipe = true
+       }
+    
+       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+       {
+         return self.Arry.count
+       }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        cell?.isUserInteractionEnabled = true
+        cell?.textLabel?.text = "\(indexPath.row) \(self.Arry[indexPath.row])"
+        return cell!
+        
     }
 
     override func didReceiveMemoryWarning() {
